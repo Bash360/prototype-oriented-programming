@@ -1,0 +1,13 @@
+{
+  "name": "pop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "pop.js",
+  "dependencies": {},
+  "devDependencies": {"jest":"^24.7.1"},
+  "scripts": {
+    "test": "jest --watchAll --coverage"
+  },
+  "author": "mark bashir",
+  "license": "ISC"
+}
