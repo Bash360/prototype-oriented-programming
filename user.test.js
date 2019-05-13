@@ -1,5 +1,10 @@
 const user = require("./user");
 const admin = require("./admin");
+bash = new user("mark bashir", "beejayphil@gmail.com", "password");
+chidera = new user("chidera stephen hopewell", "chidera@gmail.com", "blahblah");
+enigma = new admin("mark bashorun", "bashorun@enigma.com", "password");
+tolu = new user("tolu adeshina", "toluadesina@gmail.com", "password");
+bolu = new user("tolu adeshina", "toluadesina@gmail.com", "password");
 enigma.deleteUser(bash.getID);
 
 
@@ -13,7 +18,7 @@ describe("User object Test for prototype ", () => {
     it("expects to return user not found", () => {
         expect(bash.updateUser("chidera stephen hopewell", "chidera@gmail.com", "blahblah")).toMatch("user not found");
     });
-    
+
     it("expects to return updated", () => {
         expect(chidera.updateUser("chidera stephen hopewell", "chidera@gmail.com", "blahblah")).toMatch(`updated`);
 
@@ -32,11 +37,11 @@ describe("User object Test for prototype ", () => {
 
     });
     it(`expects to return "order created"`, () => {
-        expect(chidera.createOrder("condom","sweat shirt","blue jeans")).toMatch("order created");
+        expect(chidera.createOrder("condom", "sweat shirt", "blue jeans")).toMatch("order created");
 
     });
     it(`expects to return "user not found cant created order"`, () => {
-        expect(bash.createOrder("condom","sweat shirt","blue jeans")).toMatch("user not found cant created order");
+        expect(bash.createOrder("condom", "sweat shirt", "blue jeans")).toMatch("user not found cant create order");
 
     });
 

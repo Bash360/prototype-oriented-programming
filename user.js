@@ -1,7 +1,7 @@
-userDatabase = [];
-id = 1;
-orderDatabase = [];
-orderID = 1;
+const order = require("./order");
+let userDatabase = [];
+let id = 1;
+
 user = function (name, email, password) {
     let userid = id;
     this.name = name;
@@ -9,7 +9,7 @@ user = function (name, email, password) {
     this.password = password;
     Object.defineProperty(this, "getID", {
         get: function () {
-            return userid
+            return userid;
         }
     });
     userDatabase.push({
@@ -61,6 +61,7 @@ user.prototype.updateUser = function (name, email, password) {
         console.log("user not found")
         return `user not found`;
     } else {
+        console.log("updated");
         return "updated";
     }
 };
@@ -94,23 +95,13 @@ user.prototype.createOrder = function (...products) {
         }
     });
     if (found) {
-        let time = new Date();
-        let orderTime = `${time.getHours()}:${time.getMinutes()}.${time.getSeconds()}`;
-        let orderDate = `${time.getFullYear()}-${time.getDate()}-${time.getMonth()+1}`;
-        orderDatabase.push({
-            userID: this.getID,
-            products,
-            orderTime,
-            orderDate,
-            orderID
-        });
-        console.log(`order successfully created your order ID is ${orderID}`);
-        orderID++;
-        return `order created`;
-
+        return order.prototype.createOrder(this.getID, ...products);
     } else {
-        return "user not found cant created order";
+        return "user not found cant create order";
     }
 }
 
 module.exports = user;
+bash=new user("blhhsahsh","blhhsahsh","blhhsahsh");
+cynt=new user("blhhsahsh","blhhsahsh","blhhsahsh");
+console.log(bash.getID);

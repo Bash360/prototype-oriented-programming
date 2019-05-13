@@ -6,7 +6,7 @@
   "dependencies": {},
   "devDependencies": {"jest":"^24.7.1"},
   "scripts": {
-    "test": "jest --watchAll --coverage"
+    "test": "jest "
   },
   "author": "mark bashir",
   "license": "ISC"

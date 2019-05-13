@@ -1,5 +1,10 @@
 const user = require("./user");
 const admin = require("./admin");
+bash = new user("mark bashir", "beejayphil@gmail.com", "password");
+chidera = new user("chidera stephen hopewell", "chidera@gmail.com", "blahblah");
+enigma = new admin("mark bashorun", "bashorun@enigma.com", "password");
+tolu = new user("tolu adeshina", "toluadesina@gmail.com", "password");
+bolu = new user("tolu adeshina", "toluadesina@gmail.com", "password");
 enigma.deleteUser(bash.getID);
 
 
@@ -13,7 +18,7 @@ describe("User object Test for prototype ", () => {
     it("expects to return user not found", () => {
         expect(bash.updateUser("chidera stephen hopewell", "chidera@gmail.com", "blahblah")).toMatch("user not found");
     });
-    
+
     it("expects to return updated", () => {
         expect(chidera.updateUser("chidera stephen hopewell", "chidera@gmail.com", "blahblah")).toMatch(`updated`);
 
@@ -32,11 +37,11 @@ describe("User object Test for prototype ", () => {
 
     });
     it(`expects to return "order created"`, () => {
-        expect(enigma.createOrder("condom","sweat shirt","blue jeans")).toMatch("order created");
+        expect(enigma.createOrder("condom", "sweat shirt", "blue jeans")).toMatch("order created");
 
     });
     it(`expects to return "user not found cant created order"`, () => {
-        expect(bash.createOrder("condom","sweat shirt","blue jeans")).toMatch("user not found cant created order");
+        expect(bash.createOrder("condom", "sweat shirt", "blue jeans")).toMatch("user not found cant create order");
 
     });
     it(`expects to return "user with id not found"`, () => {
@@ -51,23 +56,23 @@ describe("User object Test for prototype ", () => {
         expect(enigma.deleteUser(tolu.getID)).toMatch(`user with id not found`);
 
     });
-   
+
     it(`expects to return "user not found"`, () => {
-        expect(enigma.updateUser(bash.getID,"mark bashir-ugwi","bee@ymail.com","passw")).toMatch(`user not found`);
+        expect(enigma.updateUser(bash.getID, "mark bashir-ugwi", "bee@ymail.com", "passw")).toMatch(`user not found`);
 
     });
     it(`expects to return "updated"`, () => {
-        
-        expect(enigma.updateUser(bolu.getID,"mark bashir-ugwi","bee@ymail.com","passw")).toMatch(`updated`);
+
+        expect(enigma.updateUser(bolu.getID, "mark bashir-ugwi", "bee@ymail.com", "passw")).toMatch(`updated`);
 
     });
     it(`expects to return "updated"`, () => {
-        
-        expect(enigma.updateUser(bolu.getID,"mark bashir-ugwi","bee@ymail.com","passw")).toMatch(`updated`);
+
+        expect(enigma.updateUser(bolu.getID, "mark bashir-ugwi", "bee@ymail.com", "passw")).toMatch(`updated`);
 
     });
     it(`expects to return object`, () => {
-        
+
         expect(enigma.readOrder(1)).toHaveProperty("userID",
             "products",
             "orderTime",
@@ -76,34 +81,39 @@ describe("User object Test for prototype ", () => {
 
     });
     it(`expects to return array`, () => {
-        arrayoforders=enigma.readAllOrders()
-        expect(arrayoforders[0]).toMatchObject({"orderID":1});
+        arrayoforders = enigma.readAllOrders()
+        expect(arrayoforders[0]).toMatchObject({
+            "orderID": 1
+        });
 
     });
     it(`expects to return "updated"`, () => {
-        
-        expect(enigma.updateOrder(1,"phone","book")).toMatch(`updated`);
+
+        expect(enigma.updateOrder(1, "phone", "book")).toMatch(`updated`);
 
     });
     it(`expects to return false`, () => {
-        
-        expect(enigma.updateOrder(3,"phone","book")).toBeFalsy();
+
+        expect(enigma.updateOrder(3, "phone", "book")).toBeFalsy();
 
     });
     it(`expects to return "order with id not found"`, () => {
-        
+
         expect(enigma.deleteOrder(3)).toMatch(`order with id not found`);
 
     });
     it(`expects to return "deleted"`, () => {
-        
+
         expect(enigma.deleteOrder(1)).toMatch(`deleted`);
 
     });
-   
+    it(`expects to return "Deleted all users"`, () => {
+        expect(enigma.deleteAllUsers()).toMatch(`Deleted all users`);
+    });
+    it(`expects to return "Deleted all orders"`, () => {
+        expect(enigma.deleteAllOrders()).toMatch(`order database empty`);
+    });
+
 
 
 });
-// it(`expects to return "Deleted all users"`, () => {
-//     expect(enigma.deleteAllUsers()).toMatch(`Deleted all users`);
-// });

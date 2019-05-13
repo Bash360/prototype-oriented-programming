@@ -1,0 +1,17 @@
+const admin = require("./admin");
+const user = require("./user");
+james = new user("lebron james", "mrjames@greatest.com", "dunkdunk");
+jordan = new user("michael jordan", "mrjordan@greatestofalltime.com", "iamthegoat");
+devil = new admin("mark bashir", "beejayphil@gmail.com", "password");
+james.readUser(jordan.getID);
+devil.readAllUsers();
+james.updateUser("lebron james", "therealjames@gmail.com", "slamjunk");
+james.createOrder("bread", "coke", "air jordans");
+james.searchUser("lebron james");
+devil.readOrder(1);
+devil.readAllOrders();
+devil.updateOrder(1, "coke", "sneakers");
+devil.deleteOrder(1);
+devil.deleteAllOrders();
+devil.deleteUser(james.getID);
+devil.deleteAllUsers();

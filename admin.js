@@ -1,4 +1,5 @@
 const user = require("./user");
+const order=require("./order");
 admin = function (name, email, password) {
     this.name = name;
     this.email = email;
@@ -34,9 +35,6 @@ admin.prototype.deleteUser = function (id) {
         return "user deleted";
     }
 
-
-
-
 }
 admin.prototype.deleteAllUsers = function () {
     if (userDatabase.length !== 0) {
@@ -67,90 +65,21 @@ admin.prototype.updateUser = function (id, name, email, password) {
 
 }
 admin.prototype.readOrder = function (orderID) {
-    let found = false;
-    let allOrder;
-    orderDatabase.forEach((element) => {
-
-        if (element.orderID === orderID) {
-            console.log(`user: ${element.userID} ordered for \nproducts: ${element.products}\n
-           at ${element.orderTime} on the ${element.orderDate}
-
-           `);
-            found = true;
-            allOrder = element;
-        }
-    });
-    if (!found) {
-        console.log("order not found");
-    } else {
-        return allOrder;
-    }
+    return order.prototype.readOrder(orderID);
 }
 admin.prototype.readAllOrders = function () {
-    let orders = [];
-    if (orderDatabase.length === 0) {
-        console.log(`order database is empty`);
-        return `order database is empty`;
-    } else {
-        orderDatabase.forEach(function (element) {
-            console.log(element);
-            orders.push(element);
-        });
-        return orders;
-    }
+    return order.prototype.readAllOrders();
 }
 admin.prototype.updateOrder = function (orderID, ...products) {
-    let time = new Date();
-    let found = false;
-    let orderTime = `${time.getHours()}:${time.getMinutes()}.${time.getSeconds()}`;
-    let orderDate = `${time.getFullYear()}-${time.getDate()}-${time.getMonth()+1}`;
-    orderDatabase.forEach((element) => {
-        if (element.orderID === orderID) {
-            element.products = products;
-            element.orderDate = orderDate;
-            element.orderTime = orderTime;
-            found = true;
-        }
-    });
-    if (!found) {
-        console.log("order not found");
-        return false;
-    } else {
-        return "updated"
-    }
+    return order.prototype.updateOrder(orderID,...products);
 }
 admin.prototype.deleteOrder = function (orderID) {
-    let found = false;
-    orderDatabase.forEach((element, index) => {
-        if (element.orderID === orderID) {
-            orderDatabase.splice(index, 1);
-            console.log("order deleted " + element.products);
-            found = true;
-        }
-    });
-    if (!found) {
-        return "order with id not found";
-    } else {
-        return `deleted`;
-    }
-
-
-
+  return order.prototype.deleteOrder(orderID);
 
 }
 admin.prototype.deleteAllOrders = function () {
-    if (orderDatabase.length !== 0) {
-        orderDatabase.length = 0;
-        console.log("Deleted all orders");
-        return console.log(`Deleted all orders`);
-    } else {
-        return console.log(`order database empty!!!`);
-    }
+   return  order.prototype.deleteAllOrders();
 }
-bash = new user("mark bashir", "beejayphil@gmail.com", "password");
-chidera = new user("chidera stephen hopewell", "chidera@gmail.com", "blahblah");
-enigma = new admin("mark bashorun", "bashorun@enigma.com", "password");
-tolu=new user("tolu adeshina", "toluadesina@gmail.com", "password");
-bolu=new user("tolu adeshina", "toluadesina@gmail.com", "password");
-
+enigma= new admin("bash bash","freeme@gmail.com","pass");
+console.log(Object.getPrototypeOf(admin));
 module.exports = admin;
